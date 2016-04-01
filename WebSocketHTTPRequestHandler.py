@@ -130,7 +130,7 @@ class WebSocketHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     raise ProtocolError('WS: connection close frame payload too long')
                 self.ws_close_connection(code)
                 return
-            elif opcode == OPCODE_PING_FRAME:
+            elif opcode == self.OPCODE_PING_FRAME:
                 log.debug('WS: ping frame received')
                 if not fin:
                     raise ProtocolError('WS: fragmented ping frame')
@@ -138,7 +138,7 @@ class WebSocketHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     raise ProtocolError('WS: ping frame payload too long')
                 send_ws_frame(0x0a, payload_len, payload)
                 return
-            elif opcode == OPCODE_PONG_FRAME:
+            elif opcode == self.OPCODE_PONG_FRAME:
                 log.debug('WS: pong frame received')
                 if not fin:
                     raise ProtocolError('WS: fragmented pong frame')
