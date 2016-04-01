@@ -120,7 +120,7 @@ class WebSocketHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 code = None
                 if payload_len > 0:
                     if payload_len >= 2:
-                        code = struct.unpack('!H', payload[:2])
+                        (code, ) = struct.unpack('!H', payload[:2])
                         log.debug('WS: received connection close code %d' % code)
                     else:
                         raise ProtocolError('WS: connection close frame payload should contain code')
