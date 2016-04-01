@@ -91,11 +91,11 @@ class WebSocketHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             mask = h2 & self.MASK
             payload_len = h2 & self.__PAYLOAD_LEN
             if payload_len == self.PAYLOAD_EXTENDED_16:
-                (payload_len) = struct.unpack('!H', self.rfile.read(2))
+                (payload_len, ) = struct.unpack('!H', self.rfile.read(2))
             elif payload_len == self.PAYLOAD_EXTENDED_64:
-                (payload_len) = struct.unpack('!Q', self.rfile.read(8))
+                (payload_len, ) = struct.unpack('!Q', self.rfile.read(8))
             if mask:
-                (masking_key) = bytearray(self.rfile.read(4))
+                masking_key = bytearray(self.rfile.read(4))
             else:
                 raise ProtocolError('WS: received non masked frame from client')
 
