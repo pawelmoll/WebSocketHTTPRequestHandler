@@ -155,7 +155,7 @@ class WebSocketHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     except UnicodeDecodeError:
                         raise TextPayloadError('WS: non-UTF-8 text payload')
                 else:
-                    self.ws_binary_received(ws_payload)
+                    self.ws_binary_received(self.ws_payload)
 
         except WebSocketError as e:
             log.warning(e.message)
