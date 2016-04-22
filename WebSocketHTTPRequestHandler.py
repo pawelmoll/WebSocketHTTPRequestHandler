@@ -67,7 +67,7 @@ class WebSocketHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         log.warning('WS: ignoring text message "%s"' % message)
 
     def ws_binary_received(self, message):
-        log.warning('WS: ignoring text message "%s"' % message)
+        log.warning('WS: ignoring binary message "%s"' % message)
 
     def ws_text_send(self, message):
         if not isinstance(message, str) and not isinstance(message, unicode):
